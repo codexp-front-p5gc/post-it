@@ -1,7 +1,7 @@
 var listaNotas = {
     secao: document.getElementsByClassName("notes")[0],
     listaInterna: [],
-    adiciona: function(novoTitulo, novoTexto) {
+    adiciona: (novoTitulo, novoTexto) => {
         var nota = {
             titulo: novoTitulo,
             texto: novoTexto,
@@ -10,31 +10,31 @@ var listaNotas = {
         this.listaInterna.push(nota);
         // atualizarSecao(this.secao);
     },
-    remove: function(posicao) {
+    remove: (posicao) =>{
         this.listaInterna.splice(posicao, 1);
         atualizarSecao(this.secao);
     },
-    edita: function(posicao) {
+    edita: (posicao) =>{
         this.listaInterna[posicao].editando = true;
         atualizarSecao(this.secao);
     },
-    salva: function(posicao, novoTitulo, novoTexto) {
+    salva: (posicao, novoTitulo, novoTexto) =>{
         this.listaInterna[posicao].titulo = novoTitulo;
         this.listaInterna[posicao].texto = novoTexto;
         this.listaInterna[posicao].editando = false;
         atualizarSecao(this.secao);
     },
-    pega: function(posicao) {
+    pega: (posicao) =>{
         return this.listaInterna[posicao];
     },
-    contaTotal: function() {
+    contaTotal: () => {
         return this.listaInterna.length;
     }
 };
 
 export default listaNotas;
 
-function atualizarSecao(secao) {
+const atualizarSecao = (secao) => {
     var conteudoSecao = "";
 
     for (var posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
@@ -60,11 +60,11 @@ function atualizarSecao(secao) {
     secao.innerHTML = conteudoSecao;
 }
 
-function editaFormulario(posicao) {
+const editaFormulario= (posicao) => {
     listaNotas.edita(posicao);
 }
 
-function adicionarNota(inputTitulo, textareaTexto, formulario, posicao) {
+const adicionarNota = (inputTitulo, textareaTexto, formulario, posicao)=>  {
     if (listaNotas.pega(posicao)) {
         listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
     } else {
@@ -73,7 +73,7 @@ function adicionarNota(inputTitulo, textareaTexto, formulario, posicao) {
     }
 }
 
-function removerNota(evento, posicao) {
+const removerNota = (evento, posicao) => {
     evento.stopPropagation();
     listaNotas.remove(posicao);
 }
