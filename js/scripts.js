@@ -1,47 +1,49 @@
+let qualqueCoisa = "Olá";
+
 var listaNotas = {
     secao: document.getElementsByClassName("notes")[0],
     listaInterna: [],
-    adiciona: (novoTitulo, novoTexto) => {
-        var nota = {
+    adiciona(novoTitulo, novoTexto) {
+        let nota = {
             titulo: novoTitulo,
             texto: novoTexto,
             editando: false
         };
         this.listaInterna.push(nota);
-        // atualizarSecao(this.secao);
+        atualizarSecao(this.secao);
     },
-    remove: (posicao) =>{
+    remove(posicao) {
         this.listaInterna.splice(posicao, 1);
         atualizarSecao(this.secao);
     },
-    edita: (posicao) =>{
+    edita(posicao) {
         this.listaInterna[posicao].editando = true;
         atualizarSecao(this.secao);
     },
-    salva: (posicao, novoTitulo, novoTexto) =>{
+    salva(posicao, novoTitulo, novoTexto) {
         this.listaInterna[posicao].titulo = novoTitulo;
         this.listaInterna[posicao].texto = novoTexto;
         this.listaInterna[posicao].editando = false;
         atualizarSecao(this.secao);
     },
-    pega: (posicao) =>{
+    pega(posicao) {
         return this.listaInterna[posicao];
     },
-    contaTotal: () => {
+    contaTotal() {
         return this.listaInterna.length;
     }
+    
 };
 
-export default listaNotas;
-
-const atualizarSecao = (secao) => {
+const atualizarSecao = secao => {
     var conteudoSecao = "";
 
-    for (var posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
-        if (listaNotas.pega(posicao).editando) {
-            conteudoSecao += `<form class="note">'+
+    for (let posicao = 0; posicao < listaNotas.contaTotal(); posicao++) {
+        let notaAtual = listaNotas.pega(posicao);
+        if (notaAtual.editando) {
+            conteudoSecao += `<form class="note">
                               <input class="note__title" type="text" name="titulo" value="${notaAtual.titulo}" placeholder="Título">
-                              <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">' ${notaAtual.texto} +'</textarea>
+                              <textarea class="note__body" name="texto" rows="5" placeholder="Criar uma nota...">${notaAtual.texto}</textarea>
                               <button class="note__control" type="button" onclick="adicionarNota(this.form.titulo, this.form.texto, this.form, ${posicao})">
                                   Concluído
                               </button>
@@ -60,11 +62,10 @@ const atualizarSecao = (secao) => {
     secao.innerHTML = conteudoSecao;
 }
 
-const editaFormulario= (posicao) => {
-    listaNotas.edita(posicao);
-}
+const editaFormulario = posicao => listaNotas.edita(posicao);
 
-const adicionarNota = (inputTitulo, textareaTexto, formulario, posicao)=>  {
+const adicionarNota = (inputTitulo, textareaTexto, formulario, posicao) =>  {
+    
     if (listaNotas.pega(posicao)) {
         listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
     } else {
