@@ -1,36 +1,57 @@
 let qualqueCoisa = "Olá";
 
+class Nota {
+            constructor(novoTitulo, novoTexto, editando) {
+            this._titulo = novoTitulo,
+            this._texto = novoTexto,
+            this._editando = editando
+        }
+    // getters / setters
+    get titulo() {
+        return this._titulo;
+    }
+    get texto() {
+        return this._texto;
+    }
+    get editando() {
+        return this._editando;
+    }
+    set titulo(tituloAlterado) {
+        if (tituloAlterado !== null && tituloAlterado.length > 5) {
+            this._titulo = tituloAlterado;
+        } else {
+            alert("Preencha o título!");
+        }
+    }
+}
+
 class ListaNotas {
-   constructor(secao, listaInterna) {
-    secao: document.getElementsByClassName("notes")[0];
-    this.listaInterna = [];
+    constructor() {
+        this._secao = document.getElementsByClassName("notes")[0];
+        this._listaInterna = [];
     }
 
     adiciona(novoTitulo, novoTexto) {
-        let nota = {
-            titulo: novoTitulo,
-            texto: novoTexto,
-            editando: false
-        }
+        let _nota = new Nota(novoTitulo, novoTexto);
         this.listaInterna.push(nota);
-        atualizarSecao(this.secao);
+        atualizarSecao(this._secao);
     }
 
     remove(posicao) {
         this.listaInterna.splice(posicao, 1);
-        atualizarSecao(this.secao);
+        atualizarSecao(this._secao);
     }
 
     edita(posicao) {
         this.listaInterna[posicao].editando = true;
-        atualizarSecao(this.secao);
+        atualizarSecao(this._secao);
     }
 
     salva(posicao, novoTitulo, novoTexto) {
         this.listaInterna[posicao].titulo = novoTitulo;
         this.listaInterna[posicao].texto = novoTexto;
         this.listaInterna[posicao].editando = false;
-        atualizarSecao(this.secao);
+        atualizarSecao(this._secao);
     }
     pega(posicao) {
         return this.listaInterna[posicao];
