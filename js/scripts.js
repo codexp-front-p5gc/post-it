@@ -25,43 +25,45 @@ class Nota {
     }
 }
 
-class ListaNotas {
+class ListaNotas extends Array {
     constructor() {
+        super();
         this._secao = document.getElementsByClassName("notes")[0];
-        this._listaInterna = [];
     }
 
-    adiciona(novoTitulo, novoTexto) {
+    push(novoTitulo, novoTexto) {
         let _nota = new Nota(novoTitulo, novoTexto);
-        this.listaInterna.push(nota);
+        super.push(_nota);
         atualizarSecao(this._secao);
     }
 
     remove(posicao) {
-        this.listaInterna.splice(posicao, 1);
+        super.splice(posicao, 1);
         atualizarSecao(this._secao);
     }
 
     edita(posicao) {
-        this.listaInterna[posicao].editando = true;
-        atualizarSecao(this._secao);
+        this[posicao].editando = true;
+        atualizarSecao(this.._secao);
     }
 
     salva(posicao, novoTitulo, novoTexto) {
-        this.listaInterna[posicao].titulo = novoTitulo;
-        this.listaInterna[posicao].texto = novoTexto;
-        this.listaInterna[posicao].editando = false;
+        this[posicao].titulo = novoTitulo;
+        this[posicao].texto = novoTexto;
+        this[posicao].editando = false;
         atualizarSecao(this._secao);
     }
     pega(posicao) {
-        return this.listaInterna[posicao];
+        return this[posicao];
     }
 
     contaTotal() {
-        return this.listaInterna.length;
+        return this.length;
     }
     
 };
+
+const listaNotas = new ListaNotas();
 
 const atualizarSecao = secao => {
     var conteudoSecao = "";
@@ -94,10 +96,12 @@ const editaFormulario = posicao => listaNotas.edita(posicao);
 
 const adicionarNota = (inputTitulo, textareaTexto, formulario, posicao) =>  {
     
-    if (listaNotas.pega(posicao)) {
+    
+    if (posicao !== null ) {
         listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
     } else {
-        listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+        
+        listaNotas.push(inputTitulo.value, textareaTexto.value);
         formulario.reset();
     }
 }
