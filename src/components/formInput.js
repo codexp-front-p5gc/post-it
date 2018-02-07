@@ -1,13 +1,22 @@
-function FormInput() {
+function FormInput(propriedadades) {
 
-    let inputTitulo = document.createElement('input');
-    inputTitulo.setAttribute('class', 'note__title');
-    inputTitulo.setAttribute('type', 'text');
-    inputTitulo.setAttribute('name', 'titulo');
-    inputTitulo.setAttribute('value', notaAtual.titulo);
-    inputTitulo.setAttribute('placeholder', 'Título');
+    let formInput = document.createElement('input');
 
-    return inputTitulo;
+    //destructuring
+    formInput.setAttribute('class', propriedades.className);
+    formInput.setAttribute('type', propriedades.type);
+    formInput.setAttribute('name', propriedades.name);
+    formInput.setAttribute('value', propriedades.value);
+    formInput.setAttribute('placeholder', propriedades.placeholder);
+
+
+    // qualquer valor é true
+    if (propriedades.readonly) {
+        formInput.setAttribute('readonly', true);
+    }
+
+    return FormInput;
 }
 
 export default Forminput;
+
