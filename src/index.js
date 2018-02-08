@@ -73,7 +73,7 @@ const atualizarSecao = secao => {
         // }
 
         // property shorthand
-        const props = { posicao, notaAtual, editarFormulario, adicionarNota, removerNota };
+        const props = {posicao, notaAtual, editarFormulario, adicionarNota, removerNota };
         secao.appendChild(new FormNotas(props));
     }
 
@@ -86,7 +86,7 @@ window.adicionarNota = (inputTitulo, textareaTexto, formulario, posicao) => {
     if (listaNotas.pega(posicao)) {
         listaNotas.salva(posicao, inputTitulo.value, textareaTexto.value);
     } else {
-        listaNotas.adiciona(inputTitulo.value, textareaTexto.value);
+        listaNotas.push(inputTitulo.value, textareaTexto.value);
         formulario.reset();
     }
 }

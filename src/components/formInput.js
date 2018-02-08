@@ -1,4 +1,4 @@
-function FormInput(propriedadades) {
+function FormInput(propriedades) {
 
     let formInput = document.createElement('input');
 
@@ -15,8 +15,8 @@ function FormInput(propriedadades) {
         formInput.setAttribute('readonly', true);
     }
 
-    return FormInput;
+    return formInput;
 }
 
-export default Forminput;
+export default FormInput;
 

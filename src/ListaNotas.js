@@ -8,12 +8,12 @@ class ListaNotas {
 
     push(novoTitulo, novoTexto) {
         let nota = new Nota(novoTitulo, novoTexto);
-       this._listaInterna.push(nota);
+        this._listaInterna.push(nota);
         this._observador();
     }
 
-    splice(posicao, quantidade) {
-        this.listaInterna.splice(posicao, 1);
+    remove(posicao, quantidade) {
+        this._listaInterna.splice(posicao, 1);
         this._observador();
     }
 

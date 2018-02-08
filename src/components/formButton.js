@@ -5,7 +5,7 @@ function FormButton(props) {
   formButton.setAttribute('type', props.type);
   formButton.addEventListener('click', props.click);
 
-  formButton.innerHTML = propriedades.texto;
+  formButton.innerHTML = props.texto;
   return formButton;
 }
 

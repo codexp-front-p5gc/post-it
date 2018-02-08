@@ -11,20 +11,20 @@ class Nota {
         return this._titulo;
     }
 
+     set titulo(tituloAlterado) {
+        this._titulo = tituloAlterado;
+    }
+
     get texto() {
         return this._texto;
     }
 
-    get editando() {
-        return this._editando;
-    }
-
-    set titulo(tituloAlterado) {
-        this._titulo = tituloAlterado;
-    }
-
     set texto(textoAlterado) {
         this._texto = textoAlterado;
+    }
+
+    get editando() {
+        return this._editando;
     }
 
     set editando(editandoAlterado) {

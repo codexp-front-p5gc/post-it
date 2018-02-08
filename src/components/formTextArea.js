@@ -1,6 +1,5 @@
-
 // props param
-function FormTextarea(props) {
+function FormTextArea(props) {
     let formTextarea = document.createElement('textarea');
 
     // destructuring
@@ -19,4 +18,4 @@ function FormTextarea(props) {
     return formTextarea;
 }
 
-export default FormTextarea;
+export default FormTextArea;
